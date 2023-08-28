@@ -1,18 +1,17 @@
-from selenium.webdriver.common.by import By
+from .base_page import BasePage
+from selector.selector_login import SelectorLogin
 
-class LoginPage:
+class LoginPage(BasePage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
+        self.selector_login = SelectorLogin()
 
     def open(self):
         self.driver.get("https://www.saucedemo.com/")
 
     def enter_credentials(self, username, password):
-        self.driver.find_element(By.XPATH, '//*[@id="user-name"]').send_keys(username)
-        self.driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(password)
+        self.wait_for_element(self.selector_login.USERNAME_INPUT).send_keys(username)
+        self.wait_for_element(self.selector_login.PASSWORD_INPUT).send_keys(password)
 
     def click_login_button(self):
-        self.driver.find_element(By.ID, "login-button").click()
-    
-    def dashboard_title(self):
-        return self.driver.find_element(By.XPATH, '//*[@class="title"]').text
+        self.wait_for_element(self.selector_login.LOGIN_BUTTON).click()
