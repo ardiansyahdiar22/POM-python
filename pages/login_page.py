@@ -6,8 +6,8 @@ class LoginPage(BasePage):
         super().__init__(driver)
         self.selector_login = SelectorLogin()
 
-    def open(self):
-        self.driver.get("https://www.saucedemo.com/")
+    def open(self, url):
+        self.driver.get(url)
 
     def enter_credentials(self, username, password):
         self.wait_for_element(self.selector_login.USERNAME_INPUT).send_keys(username)
