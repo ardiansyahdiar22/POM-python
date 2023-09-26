@@ -1,29 +1,29 @@
 from behave import *
-from pages.login_page import LoginPage
 from utils.webdriver_utils import WebDriverUtils
 from selenium.webdriver.common.by import By
 import time
-from pages.product_page import ProductPage
+from pages.main_page import MainPage
 
-@given('I open the browser with "{url}"')
-def step_openBrowser(context, url):
+@given('I open the browser')
+def step_openBrowser(context):
     context.driver = WebDriverUtils.create_driver()
-    context.product_page = ProductPage(context.driver)
-    context.product_page.open(url)
+    context.main_page = MainPage(context.driver)
+    context.main_page.open()
 
-@when('I enter my "{username}" and "{password}"')
-def step_inputUnamePsswd(context, username, password):
-    context.login_page.enter_credentials(username, password)
+@when('I enter my "{email}"')
+def step_inputEmail(context, email):
+    context.main_page.input_credential(email)
+    time.sleep(2)
 
-@when('I click the login button')
+@when('User click button login')
 def step_clickLogin(context):
-    context.login_page.click_login_button()
+    context.main_page.click_loginBtn()
+    time.sleep(1)
 
-@then('I should be redirected to the dashboard')
-def step_directToDashboard(context):
-    time.sleep(3)
-    elementTxt = context.driver.find_element(By.XPATH, '//*[@class="title"]').text
-    assert "Products" in elementTxt
+@then('Button login is enabled')
+def step_validateBtn(context):
+    is_enabled = context.main_page.enable_btn()
+    assert is_enabled, "Button not disabled"
 
 ############################
 ## Steps Search Product ##
@@ -31,13 +31,18 @@ def step_directToDashboard(context):
 
 @when('I type product name "{productName}" and click enter')
 def step_searchProduct(context, productName):
-    context.product_page.search_product(productName)
+    context.main_page.search_product(productName)
 
 @when('I click card product')
 def step_clickCard(context):
-    context.product_page.click_cardProduct()
+    context.main_page.click_cardProduct()
 
 @then('I can see product detail page')
 def step_pdpPage(context):
     time.sleep(5)
-    context.product_page.validate_imgProduct()
+    context.main_page.validate_imgProduct() 
+
+@then('I can click share button')
+def click_share_btn(context):
+    context.main_page.click_shareProduct()
+    time.sleep(3)

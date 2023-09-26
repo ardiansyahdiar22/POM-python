@@ -8,4 +8,3 @@ class BasePage:
     
     def wait_element_until_present(self, locator):
         return self.wait.until(EC.presence_of_element_located(locator))
-        

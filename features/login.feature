@@ -1,11 +1,13 @@
+@login_steps_feature @run
 Feature: Login Functionality
 
-Scenario Outline: Successful login
-    Given I open the browser with "<url>"
-    When I enter my "<username>" and "<password>"
-    And I click the login button
-    Then I should be redirected to the dashboard
+@login_on_web_app
+Scenario Outline: Login steps
+    Given I open the browser 
+    When User click button login
+    When I enter my "<email>"
+    Then Button login is enabled
 
     Examples:
-        | username | password            | url |
-        | standard_user  | secret_sauce  | https://www.saucedemo.com/ |
+        | email |  
+        | diar@gmail.com  |  
