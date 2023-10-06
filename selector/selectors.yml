@@ -1,0 +1,6 @@
+## Login SauceLabs ##
+field_username/text_field_uname : "//*[@id='user-name']"
+field_password/text_field_password : "//*[@id='password']"
+login/btn_login : "//*[@id='login-button']"
+
+title/product_title : "//*[@class='title']"
