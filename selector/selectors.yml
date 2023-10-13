@@ -1,7 +1,7 @@
 ## Login SauceLabs ##
-field_username/text_field_uname : "//*[@id='user-name']"
-field_password/text_field_password : "//*[@id='password']"
-login/btn_login : "//*[@id='login-button']"
+field_username/text_field_uname : "id:user-name"
+field_password/text_field_password : "id:password"
+login/btn_login : "xpath://*[@id='login-button']"
 
-title/product_title : "//*[@class='title']"
-element_error/error_locked_user : "//*[@data-test='error']"
+title/product_title : "xpath://*[@class='title']"
+element_error/error_locked_user : "xpath://*[@data-test='error']"
