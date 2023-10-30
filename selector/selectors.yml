@@ -5,3 +5,8 @@ login/btn_login : "xpath://*[@id='login-button']"
 
 title/product_title : "xpath://*[@class='title']"
 element_error/error_locked_user : "xpath://*[@data-test='error']"
+
+## Product ##
+product/price_product_detail : "xpath://*[@class='inventory_details_price']"
+product/backpack_product : "id:item_4_title_link"
+product/btn_add_to_card : "id:add-to-cart-sauce-labs-backpack"

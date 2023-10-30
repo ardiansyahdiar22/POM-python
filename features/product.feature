@@ -1,22 +1,13 @@
 @feature_product @run
-Feature: Search product
+Feature: Product Page
 
-@searching_the_product
-Scenario: Verify user able to search product
+@detail_product_page
+Scenario: User able to see product detail page
     Given I open the browser 
-    When I fill my "product/name_product" with "search_textField/input_name_product"
-    When User click enter with "search_textField/input_name_product"
-    When User wait 5 seconds
-    Then Verify element "title_all/text_title_all_product" equals with "title/expected_txt_title"
-    # Then I can see product detail page
-
-# @share_product
-# Scenario Outline: Verify user able to share the product
-#     Given I open the browser
-#     When I type product name "<productName>" and click enter
-#     When I click card product
-#     Then I can click share button
-
-#     Examples:
-#         | productName | 
-#         | ponds men | 
+    When I fill my "username/correct_username" with "field_username/text_field_uname"
+    When I fill my "psswd/correct_password" with "field_password/text_field_password"
+    When User click "login/btn_login"
+    When User click "product/backpack_product"
+    When User wait 3 seconds
+    Then Element with "product/btn_add_to_card" is displayed
+    Then Make sure text "price/product_price_regex " with element "product/price_product_detail" is displayed

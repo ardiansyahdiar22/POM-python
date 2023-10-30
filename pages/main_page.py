@@ -20,9 +20,8 @@ class MainPage(BasePage):
 ## Function for Behaviour tap Enter on keyboard ##
 ####################################################
     def click_enter(self, selector_key):
-        actionEnter = self.selector_help.find_selector(selector_key)
-        enterButton = self.driver.find_element(By.XPATH, actionEnter)
-        enterButton.send_keys(Keys.RETURN)
+        actionEnter = self.selector_help.find_selector(self.driver, selector_key)
+        actionEnter.send_keys(Keys.RETURN)
 
 #############################################################################
 ## Function for fill text field {Example fill username & pasword for login ##
@@ -37,9 +36,8 @@ class MainPage(BasePage):
 ## Function for validation button enable ##
 ####################################################
     def check_validateButton(self, selector_key):
-        btnCheck = self.selector_help.get(selector_key)
-        element = self.wait_element_until_present((By.XPATH, btnCheck))
-        return element.is_enabled()
+        btnCheck = self.selector_help.find_selector(self.driver, selector_key)
+        return btnCheck.is_enabled()
 
 ####################################################
 ## Function for Behaviour click button ##
@@ -75,4 +73,18 @@ class MainPage(BasePage):
         text_get = self.copy_helper.get_copy(user_key)
         get_element = self.selector_help.find_selector(self.driver, selector_key)
         
-        return get_element.is_displayed()
+        try:
+            return get_element.is_displayed()
+        except Exception as e:
+            print(f"Element with copy not found {e}")
+
+####################################################
+## Function for check element is displayed ##
+####################################################
+    def element_displayed(self, selector_key):
+        element_get = self.selector_help.find_selector(self.driver, selector_key)
+
+        try:
+            return element_get.is_displayed()
+        except Exception as e:
+            print(f"Element is not displayed{e}")

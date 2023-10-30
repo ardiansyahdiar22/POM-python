@@ -26,13 +26,13 @@ def step_validateBtn(context, selector_key):
     is_enabled = context.main_page.check_validateButton(selector_key)
     assert is_enabled, "Button not disabled"
 
-# @then('Make sure text "{user_key}" is displayed')
-# def validate_textDisplay(context, user_key):
-#     context.main_page.displayed_copy(user_key)
-
 @then('Make sure text "{user_key}" with element "{selector_key}" is displayed')
 def validate_textDisplay(context, user_key, selector_key):
     context.main_page.displayed_copy(user_key, selector_key)
+
+@then('Element with "{selector_key}" is displayed')
+def validate_elementDisplayed(context, selector_key):
+    context.main_page.element_displayed(selector_key)
 
 ############################
 ## Steps Search Product ##
